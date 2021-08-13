@@ -109,12 +109,16 @@ function getAverageIMDBRating(movies) {
 //look at 'rated' property//
 //return obj
 function countByRating(movies) {
-  let newObj = {};
+  let newObj = {}; //created new object
   if(movies.length === 0){
     return newObj;
   }
   for(let i = 0; i < movies.length; i++){
-    newObj[movies[i].rated] = (newObj[movies[i]] || i++)
+    let movie = movies[i];
+    newObj[movie.rated] = newObj[movie.rated] ? newObj[movie.rated] +1 :1
+    
+    
+    // newObj[movies[i].rated] = (newObj[movies[i]] + 1 || 1);
     
   
   }
