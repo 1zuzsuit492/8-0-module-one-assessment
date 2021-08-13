@@ -134,20 +134,29 @@ function countByRating(movies) {
       // Toy Story 4
     };
  */
-function findById(movies) {
-  if(movies.length === 0){
+function findById(movies, id) {
+  if(movies.length === 0){ //if there are no movies
     return null
   }
-  else if(!movies.imdbID){
+  else if(!movies.includes(id)){ //if movie doesnt match ID,
     return null
   }
+    let newObj = {} // new obj
+    for(let i = 0; i < movies.length; i++){
+      movie = movies[i]
+      if(movie.includes(id)){
+        newObj = movie.title
+      }
 
+    }
+    return newObj;
 }
 
 /**
  * filterByGenre()
  * -----------------------------
- * Returns all movie objects with a matching genre. Case-insensitive. If the inputted `movies` array is empty or no movies match the inputted `genre`, return `[]`.
+ * Returns all movie objects with a matching genre. Case-insensitive. 
+ * If the inputted `movies` array is empty or no movies match the inputted `genre`, return `[]`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {string} genre - The genre of a movie. (e.g. "Fantasy")
  * @returns {Object[]} An array of movies where at least one of the genres matches the `genre` inputted.
@@ -164,7 +173,26 @@ function findById(movies) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+//put whole movie index into an array//
+
+  let newArr = [] //default value
+  if(movies.genre !== genre){
+    newArr;
+  }
+  else if(movies.length === 0){
+    newArr;
+  }
+
+  //loop//
+  for(let i = 0; i < movies.length; i++){
+    movie = movies[i]
+    if(movie.includes(genre)){
+    newArr.push(movie)
+    }
+  }
+  return newArr;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -188,7 +216,16 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  let newArr = [];
+
+  for(let i = 0; i < movies.length; i++){
+    if(movies.released <= year){
+      newArr.push(movies[i])
+    }
+  }
+  return newArr;
+}
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -201,7 +238,23 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+function getBiggestBoxOfficeMovie(movies) {
+  if(movies.length === 0){ //put this outside of loop
+    return null; //return 0 if array is empty/
+  }
+  //1. declare variable that's being returned.
+  let currentMovie = movies[0].boxOffice// --> comparing one movie to others
+  //loop
+  for(let i = 1; i < movies.length; i++){
+    if(currentMovie < movies[i].boxOffice){
+    currentMovie = movies[i].title; //redeclared variable
+    }
+    // else if(currentMovie <= movies[i].boxOffice){
+    //   currentMovie = movies[i].title
+    // }
+  }
+    return currentMovie;
+}
 
 // Do not change anything below this line.
 module.exports = {
