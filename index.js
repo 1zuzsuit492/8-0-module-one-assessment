@@ -52,8 +52,11 @@ function getAllMovieTitles(movies) {
  *  //> 96
  */
 function getHighestMetascore(movies) {
-  
+  if(movies.length === 0){ //put this outside of loop
+    return 0;
   }
+ 
+}
 
 
 /**
