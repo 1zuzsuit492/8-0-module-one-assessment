@@ -88,7 +88,6 @@ function getAverageIMDBRating(movies) {
   for(let i = 0; i < movies.length; i++){ //loop
     movie = movies[i];
     avg += movie.imdbRating/movies.length; // how to calculate avg
-    
   }
   return avg //number being returned
 }
@@ -96,20 +95,35 @@ function getAverageIMDBRating(movies) {
 /**
  * countByRating()
  * -----------------------------
- * Returns an object where the keys are movie ratings and the values are the number of movies in the array with that rating. If the inputted `movies` array is empty, return `{}`.
+ * Returns an object where the keys are movie ratings and the values 
+ * are the number of movies in the array with that rating. If the inputted `movies` array is empty, return `{}`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
- * @returns {Object} An object where keys are movie ratings (e.g. "PG") and the values are how many movies in the array have that rating (e.g. 7).
+ * @returns {Object} An object where keys are movie ratings (e.g. "PG") and the values are 
+ * how many movies in the array have that rating (e.g. 7).
  *
  * EXAMPLE:
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+
+//look at 'rated' property//
+//return obj
+function countByRating(movies) {
+  // let newObj = {};
+  // if(movies.length === 0){
+  //   return newObj;
+  // }
+  // for(let i = 0; i < movies.length; i++){
+
+  // }
+
+}
 
 /**
  * findById()
  * -----------------------------
- * Returns a movie object from an array of objects based on the ID. If the inputted `movies` array is empty or the ID does not match any movie, return `null`.
+ * Returns a movie object from an array of objects based on the ID. 
+ * If the inputted `movies` array is empty or the ID does not match any movie, return `null`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {string} id - A unique `imdbID`.
  * @returns {Object|null} The movie object with the matching `imdbID`.
@@ -120,7 +134,15 @@ function countByRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies) {
+  if(movies.length === 0){
+    return null
+  }
+  else if(!movies.imdbID){
+    return null
+  }
+
+}
 
 /**
  * filterByGenre()
