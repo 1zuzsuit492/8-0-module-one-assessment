@@ -4,6 +4,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -53,11 +54,18 @@ function getAllMovieTitles(movies) {
  */
 function getHighestMetascore(movies) {
   if(movies.length === 0){ //put this outside of loop
-    return 0;
+    return 0; //return 0 if array is empty/
   }
- 
+  //1. declare variable that's being returned.
+  let currentMovie = movies[0].metascore// --> comparing one movie to others
+  //loop
+  for(let i = 0; i < movies.length; i++){
+    if(currentMovie < movies[i].metascore){
+    currentMovie = movies[i].metascore; //redeclared largest
+    }
+  }
+  return Number(currentMovie);
 }
-
 
 /**
  * getAverageIMDBRating()
@@ -71,7 +79,17 @@ function getHighestMetascore(movies) {
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+function getAverageIMDBRating(movies) {
+  if(movies.length === 0){
+    return 0;
+  }
+
+  let avg = 0;
+  for(let i = 0; i < movies.length; i++){
+    avg = movies[i].imdbRating / movies.length
+    return Number(avg.toFixed(2))
+  }
+}
 
 /**
  * countByRating()
