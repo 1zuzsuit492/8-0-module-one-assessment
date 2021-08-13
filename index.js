@@ -1,5 +1,6 @@
 /*
-  Do not change the line below. If you'd like to run code from this file, you may use the `exampleMovies` variable below to gain access to an array of movies.
+  Do not change the line below. If you'd like to run code from this file, 
+  you may use the `exampleMovies` variable below to gain access to an array of movies.
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
@@ -28,8 +29,17 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
-
+function getAllMovieTitles(movies) {
+  //1. create an array 
+  let newArr = [];
+  //2. use a loop because movies is an array
+  for(let i = 0; i < movies.length; i++){
+    movie = movies[i];
+    newArr.push(movie.title) //adding moving titles to the new array.
+    
+  }
+  return newArr; //new array that is being returned.
+}
 /**
  * getHighestMetascore()
  * -----------------------------
@@ -41,12 +51,16 @@ function getAllMovieTitles() {}
  *  getHighestMetascore(movies);
  *  //> 96
  */
-function getHighestMetascore() {}
+function getHighestMetascore(movies) {
+  
+  }
+
 
 /**
  * getAverageIMDBRating()
  * -----------------------------
- * Averages all of the IMDB ratings from all movies and returns it, as a number. If the inputted `movies` array is empty, return `0`.
+ * Averages all of the IMDB ratings from all movies and returns it, as a number. 
+ * If the inputted `movies` array is empty, return `0`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @returns {number} The average IMDB rating across all movies.
  *
