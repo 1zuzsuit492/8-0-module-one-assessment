@@ -116,6 +116,7 @@ function countByRating(movies) {
   for(let i = 0; i < movies.length; i++){
     let movie = movies[i];
     newObj[movie.rated] = newObj[movie.rated] ? newObj[movie.rated] +1 :1
+    //if the number already exists, print once. if not, add one.
     
     
     // newObj[movies[i].rated] = (newObj[movies[i]] + 1 || 1);
@@ -150,8 +151,8 @@ function findById(movies, id) {
     let newObj = {} // new obj
     for(let i = 0; i < movies.length; i++){
       movie = movies[i]
-      if(movie.includes(id)){
-        newObj = movie.title
+      if(movie.imdbID.includes(id)){
+        newObj[movie] = newObj[movie.title]
       }
 
     }
@@ -193,8 +194,8 @@ function filterByGenre(movies, genre) {
   //loop//
   for(let i = 0; i < movies.length; i++){
     movie = movies[i]
-    if(movie.includes(genre)){
-    newArr.push(movie)
+    if(movie.genre === genre){
+    newArr.push(movies[i])
     }
   }
   return newArr;
@@ -225,9 +226,9 @@ function filterByGenre(movies, genre) {
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   let newArr = [];
 
-  for(let i = 0; i < movies.length; i++){
-    if(movies[i].released <= year){
-      newArr.push(movies[i])
+  for (let movie of movies) {
+    if (Number(movie.released.split(" ")[2]) <= year) {
+      newArr.push(movie);
     }
   }
   return newArr;
@@ -248,19 +249,20 @@ function getBiggestBoxOfficeMovie(movies) {
   if(movies.length === 0){ //put this outside of loop
     return null; //return 0 if array is empty/
   }
-  //1. declare variable that's being returned.
-  let currentMovie = movies[0].boxOffice// --> comparing one movie to others
-  //loop
-  for(let i = 1; i < movies.length; i++){
-    if(currentMovie < movies[i].boxOffice){
-    currentMovie = movies[i].title; //redeclared variable
+  
+  let largestAmount = 0; //default value
+  for(let movie of movies) { //loop
+    let currentMovieAmount = Number(movie.boxOffice.slice(1).split(",").join(""));
+    //converted string into number, removed $ and commas
+    if(currentMovieAmount > largestAmount) {
+      largestAmount = currentMovieAmount;
+      movieTitle = movie.title; 
     }
-    // else if(currentMovie <= movies[i].boxOffice){
-    //   currentMovie = movies[i].title
-    // }
   }
-    return currentMovie;
+  return movieTitle; //returned movie title
 }
+
+
 
 // Do not change anything below this line.
 module.exports = {
