@@ -142,23 +142,14 @@ return newObj
     };
  */
 function findById(movies, id) {
-  if(movies.length === 0){ //if there are no movies
-    return null
-  }
-  else if(!movies.includes(id)){ //if movie doesnt match ID,
-    return null
-  }
-    let newObj = {} // new obj
-    for(let i = 0; i < movies.length; i++){
-      movie = movies[i]
-      if(movie.imdbID.includes(id)){
-        newObj[movie] = newObj[movie.title]
-      }
-
+  for (let movie of movies){
+    if (movie.imdbID === id){
+      return movie 
     }
-    return newObj;
+  } if (movies.imdbID !== id){
+    return null 
+  }
 }
-
 /**
  * filterByGenre()
  * -----------------------------
@@ -184,21 +175,12 @@ function filterByGenre(movies, genre) {
 //put whole movie index into an array//
 
   let newArr = [] //default value
-  if(movies.genre !== genre){
-    newArr;
+  for (let movie of movies) {
+    if(movie.genre.toLowerCase().includes(genre.toLowerCase())) {
+      newArr.push(movie);
   }
-  else if(movies.length === 0){
-    newArr;
-  }
-
-  //loop//
-  for(let i = 0; i < movies.length; i++){
-    movie = movies[i]
-    if(movie.genre === genre){
-    newArr.push(movies[i])
-    }
-  }
-  return newArr;
+}
+return newArr;
 }
 
 /**
